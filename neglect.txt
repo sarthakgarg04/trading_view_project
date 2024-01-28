@@ -1,0 +1,12 @@
+ 1007  git remote                                                                                                       
+ 1008  git remote rm origin                                                                                             
+ 1009  git remote                                                                                                       
+ 1010  git remote add origin https://github.com/sarthakgarg04/trading_view_project.git                                  
+ 1011  git remote                                                                                                       
+ 1012  git config master.remote origin                                                                                  
+ 1013  git remote                                                                                                       
+ 1014  git remote show origin\n                                                                                         
+ 1015  git branch -vv                                                                                                   
+ 1016  git config master.merge refs/heads/master                                                                        
+ 1017  git branch -vv                                                                                                   
+ 1018  git push -u origin master  
