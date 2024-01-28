@@ -4,15 +4,11 @@ import { createChart, ColorType } from 'lightweight-charts';
 import Watchlist from './watchlist'; // Import the Watchlist component
 import './styles.css';
 
-
 export const CandlestickChartComponent = props => {
-
-  const [selectedStock, setSelectedStock] = useState('AAPL');
   const {
-    colors: {
-      backgroundColor = '#ffff',
-      textColor = 'black',
-    } = {},
+    selectedStock,
+    initialCandlesCount = 50,
+    colors: { backgroundColor = '#ffff', textColor = 'black' } = {},
   } = props;
 
   const [data, setData] = useState([]);
@@ -23,7 +19,7 @@ export const CandlestickChartComponent = props => {
     const fetchData = async () => {
       try {
         // Update the fetch URL to the deployed Flask server endpoint
-        const response = await fetch(`http://127.0.0.1:1100/api/stockdata`);
+        const response = await fetch(`http://127.0.0.1:1100/api/stockdata?symbol=${selectedStock}`);
         const jsonData = await response.json();
         setData(jsonData);
       } catch (error) {
@@ -70,12 +66,22 @@ export const CandlestickChartComponent = props => {
       open: item['Open'],
       high: item['High'],
       low: item['Low'],
-      close: item['Adj Close'],
+      close: item['Close'],
     }));
 
     candlestickSeries.setData(mappedData);
 
+    // const initialEndDate = new Date(data[initialCandlesCount - 1]['Date']);
+    // const initialStartDate = new Date(data[0]['Date']);
+    // chart.timeScale().setVisibleLogicalRange({ from: initialStartDate.getTime() / 1000, to: initialEndDate.getTime() / 1000 });
+
+    // window.addEventListener('resize', handleResize);
+
+
+
     window.addEventListener('resize', handleResize);
+    // After setting the data and logical range, fit content to adjust the time scale
+    // chart.timeScale().fitContent();
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -104,15 +110,6 @@ const App = () => {
     console.log('Clicked on stock:', stock);
     setSelectedStock(stock);
   };
-
-  // return (
-  //   <div style={{ display: 'flex' }}>
-  //     <Watchlist stocks={watchlist} onStockClick={handleStockClick} />
-  //     <CandlestickChartComponent selectedStock={selectedStock} />
-  //   </div>
-  // );
-
-
   return (
     <div className="app-container">
       <div className="watchlist-container">
@@ -126,13 +123,6 @@ const App = () => {
 };
 
 export default App;
-
-
-// export default function App() {
-//   return (
-//     <CandlestickChartComponent />
-//   );
-// }
 
 
 
