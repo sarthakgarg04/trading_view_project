@@ -36,6 +36,16 @@ npm install
 npm start
 ```
 
+
+## How run data-fetching server
+
+open another terminal and run
+```
+python3 path/to/file/fetch_data.py
+```
+
+this is done so that chart can fetch data dynamically
+
 ## Miscellaneous
 
 Open the file `package.json` and update the repository details. You may also need to update the dependencies manually if a major version has been release.
