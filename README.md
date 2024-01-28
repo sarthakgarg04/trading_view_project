@@ -24,6 +24,8 @@ $ git config master.remote origin
 $ git config master.merge refs/heads/master
 $ git push -u origin master
 $ npm install
+$ npm install scheduler
+
 
 ```
 

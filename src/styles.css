@@ -1,46 +1,128 @@
 /* General styling */
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  li {
-    padding: 10px 15px;
-    border-radius: 5px; /* Optional rounded corners */
-    margin-bottom: 10px;
-    background-color: #ffffff; /* Light background */
-    border: 1px solid #ddd; /* Optional border */
-    cursor: pointer; /* Indicate clickable items */
-  }
-  
-  /* Clicked stock styling */
-  .clicked {
-    background-color: rgb(121, 203, 230);
-  }
-  
-  /* Hover effect (optional) */
-  li:hover {
-    background-color: rgb(178, 176, 176);
-  }
-  
-  .app-container {
-    display: grid;
-    grid-template-columns: 1fr auto; /* Watchlist takes available space, chart goes to right */
-    gap: 5px; /* Add space between containers */
-  }
-  
-  .watchlist-container {
-    padding: 20px;
-    background-color: #f0f0f0; /* Light gray background */
-    border-radius: 5px; /* Optional rounded corners */
-  }
-  
-  .chart-container {
-    padding: 20px;
-    background-color: #fff; /* White background */
-    border-radius: 5px; /* Optional rounded corners */
-    width: 100%;
-    height: 100%;
-  }
-  
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+}
+
+li {
+  padding: 12px 20px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.5s;
+  font-size: 18px;
+}
+
+.clicked {
+  background-color: rgb(121, 203, 230);
+}
+
+li:hover {
+  background-color: rgb(178, 176, 176);
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 3fr 7fr; /* Two columns - watchlist and chart */
+  gap: 10px;
+  height: 100vh; /* Make the app-container take the full viewport height */
+}
+
+.chart-watchlist-container {
+  display: grid;
+  grid-template-columns: 7fr 3fr; /* Chart takes 3/4, Watchlist takes 1/4 of the available space */
+  gap: 10px; /* Increase the gap between chart and watchlist */
+  background-color: #f7f7f7; /* Light gray background */
+  border-radius: 10px; /* Slightly rounded corners */
+  position: relative; /* Ensure relative positioning for child elements */
+  height: 100%; /* Make it take the full height of the app-container */
+}
+
+.chart-container, .watchlist-container {
+  padding: 20px;
+  border-radius: 10px; /* Slightly rounded corners */
+  position: relative; /* Ensure relative positioning for child elements */
+  height: 100%; /* Make them take the full height of the chart-watchlist-container */
+}
+
+.chart-watchlist.selected {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.watchlist-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.watchlist-buttons button {
+  padding: 2px 0px;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+
+.watchlist-buttons button:hover {
+  background-color: #0056b3;
+}
+
+
+
+/* Interval dropdown styles */
+.interval-dropdown {
+  position: absolute;
+  top: 20px; /* Adjust the top position */
+  left: 20px; /* Adjust the left position */
+  z-index: 2; /* Ensure the dropdown appears above other elements */
+}
+
+.interval-dropdown button {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.interval-dropdown button:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
+.interval-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.interval-dropdown-item {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+
+.interval-dropdown-item:hover {
+  background-color: #ddd;
+}
+
+.interval-dropdown-item.selected {
+  background-color: #007bff;
+  color: #fff;
+}
