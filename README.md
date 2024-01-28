@@ -15,7 +15,7 @@ First create a **completely blank** GitHub/BitBucket repository on your account.
 
 ```bash
 # Replace `projectName` with a name of your choice
-$ git clone git@github.com:brandiqa/react-parcel-starter.git projectName
+$ git clone https://github.com/sarthakgarg04/trading_view_project.git projectName
 $ cd projectName
 $ git remote rm origin
 # Replace `username` and `repositoryName` with your values

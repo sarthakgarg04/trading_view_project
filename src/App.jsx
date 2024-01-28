@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createChart, ColorType } from 'lightweight-charts';
 import Watchlist from './watchlist'; // Import the Watchlist component
+import './styles.css';
 
 
 export const CandlestickChartComponent = props => {
@@ -38,6 +39,8 @@ export const CandlestickChartComponent = props => {
     if (!data) {
       return;
     }
+
+    
     const handleResize = () => {
       chart.applyOptions({ width: chartContainerRef.current.clientWidth });
     };
@@ -47,8 +50,8 @@ export const CandlestickChartComponent = props => {
         background: { type: ColorType.Solid, color: backgroundColor },
         textColor,
       },
-      width: 1000,
-      height: 600,
+      width: 1150,
+      height: 700,
     };
 
     const chart = createChart(chartContainerRef.current, chartOptions);
@@ -67,7 +70,7 @@ export const CandlestickChartComponent = props => {
       open: item['Open'],
       high: item['High'],
       low: item['Low'],
-      close: item['Close'],
+      close: item['Adj Close'],
     }));
 
     candlestickSeries.setData(mappedData);
@@ -102,10 +105,22 @@ const App = () => {
     setSelectedStock(stock);
   };
 
+  // return (
+  //   <div style={{ display: 'flex' }}>
+  //     <Watchlist stocks={watchlist} onStockClick={handleStockClick} />
+  //     <CandlestickChartComponent selectedStock={selectedStock} />
+  //   </div>
+  // );
+
+
   return (
-    <div style={{ display: 'flex' }}>
-      <Watchlist stocks={watchlist} onStockClick={handleStockClick} />
-      <CandlestickChartComponent selectedStock={selectedStock} />
+    <div className="app-container">
+      <div className="watchlist-container">
+        <Watchlist stocks={watchlist} onStockClick={handleStockClick} />
+      </div>
+      <div className="chart-container">
+        <CandlestickChartComponent selectedStock={selectedStock} colors={{ backgroundColor: '#ffffff' }} />
+      </div>
     </div>
   );
 };

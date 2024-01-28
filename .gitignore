@@ -1,6 +1,7 @@
 # Default
 node_modules
 .env
+neglect.txt
 # Dependency directories
 node_modules/
 jspm_packages/
